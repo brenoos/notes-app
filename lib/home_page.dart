@@ -8,6 +8,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var notes = <String>["Primeiro Item"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +23,17 @@ class _HomePageState extends State<HomePage> {
               Card(
                 child: ListTile(
                   title: Text(notes[i]),
+                  onTap: () async {
+                    final description = await Navigator.pushNamed(
+                      context,
+                      "/create-note",
+                      arguments: notes[i],
+                    );
+                    if (description != null)
+                      setState(() {
+                        notes[i] = description as String;
+                      });
+                  },
                 ),
               ),
           ],
@@ -30,14 +42,14 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () async {
-          final description = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CreateNotePage(),
-              ));
-          setState(() {
-            notes.add(description);
-          });
+          final description = await Navigator.pushNamed(
+            context,
+            "/create-note",
+          );
+          if (description != null)
+            setState(() {
+              notes.add(description as String);
+            });
         },
       ),
     );
