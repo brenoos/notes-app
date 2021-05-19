@@ -35,7 +35,9 @@ class _HomePageState extends State<HomePage> {
               MaterialPageRoute(
                 builder: (context) => CreateNotePage(),
               ));
-          print(description);
+          setState(() {
+            notes.add(description);
+          });
         },
       ),
     );
