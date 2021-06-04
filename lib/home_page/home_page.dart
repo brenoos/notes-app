@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes/create_note_page.dart';
+import 'package:notes/home_page/app_bar_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,15 +7,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var notes = <String>["Primeiro Item"];
+  var notes = <String>[];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Notes"),
-        centerTitle: true,
-      ),
+      appBar: AppBarWidget(),
       body: SingleChildScrollView(
         child: Column(
           children: [
